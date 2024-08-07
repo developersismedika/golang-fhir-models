@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-wget -O definitions.zip https://www.hl7.org/fhir/definitions.json.zip
+ver=R4
+
+wget -O definitions.zip https://www.hl7.org/fhir/$ver/definitions.json.zip
 unzip definitions.zip profiles-resources.json profiles-types.json valuesets.json -d fhir
 rm definitions.zip
 

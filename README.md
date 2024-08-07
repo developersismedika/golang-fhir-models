@@ -11,11 +11,11 @@ This repository contains a FHIR® R4 models for Go. The models consist of Go str
 
 ## Usage
 
-In your project, import `github.com/samply/golang-fhir-models/fhir-models/fhir` and you are done.
+In your project, import `github.com/developersismedika/golang-fhir-models/fhir-models/fhir` and you are done.
 
 ## TODOs
 
-* [Support ValueSets Referring to Multiple CodeSystems](https://github.com/samply/golang-fhir-models/issues/2)
+* [Support ValueSets Referring to Multiple CodeSystems](https://github.com/developersismedika/golang-fhir-models/issues/2)
 
 ## Develop
 
