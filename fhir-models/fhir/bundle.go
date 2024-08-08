@@ -46,7 +46,7 @@ type BundleEntry struct {
 	ModifierExtension []Extension          `bson:"modifierExtension,omitempty" json:"modifierExtension,omitempty"`
 	Link              []BundleLink         `bson:"link,omitempty" json:"link,omitempty"`
 	FullUrl           *string              `bson:"fullUrl,omitempty" json:"fullUrl,omitempty"`
-	Resource          json.RawMessage      `bson:"resource,omitempty" json:"resource,omitempty"`
+	Resource          *BaseResource        `bson:"resource,omitempty" json:"resource,omitempty"`
 	Search            *BundleEntrySearch   `bson:"search,omitempty" json:"search,omitempty"`
 	Request           *BundleEntryRequest  `bson:"request,omitempty" json:"request,omitempty"`
 	Response          *BundleEntryResponse `bson:"response,omitempty" json:"response,omitempty"`
@@ -70,14 +70,14 @@ type BundleEntryRequest struct {
 	IfNoneExist       *string     `bson:"ifNoneExist,omitempty" json:"ifNoneExist,omitempty"`
 }
 type BundleEntryResponse struct {
-	Id                *string         `bson:"id,omitempty" json:"id,omitempty"`
-	Extension         []Extension     `bson:"extension,omitempty" json:"extension,omitempty"`
-	ModifierExtension []Extension     `bson:"modifierExtension,omitempty" json:"modifierExtension,omitempty"`
-	Status            string          `bson:"status" json:"status"`
-	Location          *string         `bson:"location,omitempty" json:"location,omitempty"`
-	Etag              *string         `bson:"etag,omitempty" json:"etag,omitempty"`
-	LastModified      *string         `bson:"lastModified,omitempty" json:"lastModified,omitempty"`
-	Outcome           json.RawMessage `bson:"outcome,omitempty" json:"outcome,omitempty"`
+	Id                *string       `bson:"id,omitempty" json:"id,omitempty"`
+	Extension         []Extension   `bson:"extension,omitempty" json:"extension,omitempty"`
+	ModifierExtension []Extension   `bson:"modifierExtension,omitempty" json:"modifierExtension,omitempty"`
+	Status            string        `bson:"status" json:"status"`
+	Location          *string       `bson:"location,omitempty" json:"location,omitempty"`
+	Etag              *string       `bson:"etag,omitempty" json:"etag,omitempty"`
+	LastModified      *string       `bson:"lastModified,omitempty" json:"lastModified,omitempty"`
+	Outcome           *BaseResource `bson:"outcome,omitempty" json:"outcome,omitempty"`
 }
 type OtherBundle Bundle
 

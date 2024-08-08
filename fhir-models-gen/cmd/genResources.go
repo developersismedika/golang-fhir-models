@@ -21,6 +21,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	. "strings"
 	"unicode"
 
@@ -63,6 +64,7 @@ limitations under the License.
 `, "\n"), "\n")
 
 var namePattern = regexp.MustCompile("^[A-Z]([A-Za-z0-9_]){0,254}$")
+var containedHasType = false
 
 // genResourcesCmd represents the genResources command
 var genResourcesCmd = &cobra.Command{
@@ -70,6 +72,7 @@ var genResourcesCmd = &cobra.Command{
 	Short: "Generates Go structs from FHIR resource structure definitions.",
 	Run: func(cmd *cobra.Command, args []string) {
 		dir := args[0]
+		containedHasType, _ = strconv.ParseBool(args[1])
 
 		resources := make(ResourceMap)
 		resources["StructureDefinition"] = make(map[string][]byte)
@@ -429,42 +432,46 @@ func addFieldStatement(
 		} else {
 			statement.Id("string")
 		}
-	case "Resource":
-		statement.Qual("encoding/json", "RawMessage")
 	default:
-		if *element.Max == "*" {
-			statement.Op("[]")
-		} else if *element.Min == 0 {
-			statement.Op("*")
-		}
+		if elementType.Code == "Resource" && !containedHasType {
+			statement.Qual("encoding/json", "RawMessage")
+		} else {
+			if *element.Max == "*" {
+				statement.Op("[]")
+			} else if *element.Min == 0 {
+				statement.Op("*")
+			}
 
-		var typeIdentifier string
-		if parentName == "Element" && fieldName == "Id" ||
-			parentName == "Extension" && fieldName == "Url" {
-			typeIdentifier = "string"
-		} else {
-			typeIdentifier = typeCodeToTypeIdentifier(elementType.Code)
-		}
-		if typeIdentifier == "Element" || typeIdentifier == "BackboneElement" {
-			backboneElementName := parentName + fieldName
-			statement.Id(backboneElementName)
-			var err error
-			file.Type().Id(backboneElementName).StructFunc(func(childFields *jen.Group) {
-				//var err error
-				elementIndex, err = appendFields(resources, requiredTypes, requiredValueSetBindings, file, childFields,
-					backboneElementName, elementDefinitions, elementIndex+1, level+1)
-			})
-			if err != nil {
-				return 0, err
+			var typeIdentifier string
+			if parentName == "Element" && fieldName == "Id" ||
+				parentName == "Extension" && fieldName == "Url" {
+				typeIdentifier = "string"
+			} else {
+				typeIdentifier = typeCodeToTypeIdentifier(elementType.Code)
 			}
-			elementIndex--
-		} else if typeIdentifier == "decimal" {
-			statement.Qual("encoding/json", "Number")
-		} else {
-			if unicode.IsUpper(rune(typeIdentifier[0])) {
-				requiredTypes[typeIdentifier] = true
+			if typeIdentifier == "Element" || typeIdentifier == "BackboneElement" {
+				backboneElementName := parentName + fieldName
+				statement.Id(backboneElementName)
+				var err error
+				file.Type().Id(backboneElementName).StructFunc(func(childFields *jen.Group) {
+					//var err error
+					elementIndex, err = appendFields(resources, requiredTypes, requiredValueSetBindings, file, childFields,
+						backboneElementName, elementDefinitions, elementIndex+1, level+1)
+				})
+				if err != nil {
+					return 0, err
+				}
+				elementIndex--
+			} else if typeIdentifier == "decimal" {
+				statement.Qual("encoding/json", "Number")
+			} else if typeIdentifier == "Resource" {
+				statement.Id("BaseResource")
+			} else {
+				if unicode.IsUpper(rune(typeIdentifier[0])) {
+					requiredTypes[typeIdentifier] = true
+				}
+				statement.Id(typeIdentifier)
 			}
-			statement.Id(typeIdentifier)
 		}
 	}
 

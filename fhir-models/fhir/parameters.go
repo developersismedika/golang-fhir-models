@@ -82,7 +82,7 @@ type ParametersParameter struct {
 	ValueUsageContext        *UsageContext         `bson:"valueUsageContext,omitempty" json:"valueUsageContext,omitempty"`
 	ValueDosage              *Dosage               `bson:"valueDosage,omitempty" json:"valueDosage,omitempty"`
 	ValueMeta                *Meta                 `bson:"valueMeta,omitempty" json:"valueMeta,omitempty"`
-	Resource                 json.RawMessage       `bson:"resource,omitempty" json:"resource,omitempty"`
+	Resource                 *BaseResource         `bson:"resource,omitempty" json:"resource,omitempty"`
 	Part                     []ParametersParameter `bson:"part,omitempty" json:"part,omitempty"`
 }
 type OtherParameters Parameters
