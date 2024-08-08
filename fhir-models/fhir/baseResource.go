@@ -6,7 +6,6 @@ import (
 )
 
 type BaseResource struct {
-	Type         reflect.Type
 	ResourceType ResourceType
 	Resource     interface{}
 }
@@ -15,11 +14,15 @@ type resourceDefinition struct {
 	ResourceType ResourceType `json:"resourceType"`
 }
 
-func (r BaseResource) MarshalJSON() ([]byte, error) {
+func (r *BaseResource) Type() reflect.Type {
+	return r.ResourceType.Type()
+}
+
+func (r *BaseResource) MarshalJSON() ([]byte, error) {
 	def := reflect.StructOf([]reflect.StructField{
 		reflect.StructField{
-			Name:      r.Type.Name(),
-			Type:      r.Type,
+			Name:      r.Type().Name(),
+			Type:      r.Type(),
 			Anonymous: true,
 		},
 		reflect.StructField{
@@ -30,7 +33,7 @@ func (r BaseResource) MarshalJSON() ([]byte, error) {
 	})
 
 	payload := reflect.New(def)
-	payload.Elem().FieldByName(r.Type.Name()).Set(reflect.ValueOf(r.Resource).Elem())
+	payload.Elem().FieldByName(r.Type().Name()).Set(reflect.ValueOf(r.Resource).Elem())
 	payload.Elem().FieldByName("ResourceType").Set(reflect.ValueOf(r.ResourceType))
 
 	// result := reflect.ValueOf(payload).MethodByName("MarshalJSON").Call([]reflect.Value{})
@@ -59,7 +62,6 @@ func (r *BaseResource) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	r.Type = def.ResourceType.Type()
 	r.ResourceType = def.ResourceType
 	r.Resource = resource.Interface()
 
