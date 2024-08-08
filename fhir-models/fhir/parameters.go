@@ -21,6 +21,8 @@ import "encoding/json"
 
 // Parameters is documented here http://hl7.org/fhir/StructureDefinition/Parameters
 type Parameters struct {
+	BaseResource
+
 	Id            *string               `bson:"id,omitempty" json:"id,omitempty"`
 	Meta          *Meta                 `bson:"meta,omitempty" json:"meta,omitempty"`
 	ImplicitRules *string               `bson:"implicitRules,omitempty" json:"implicitRules,omitempty"`
@@ -82,7 +84,7 @@ type ParametersParameter struct {
 	ValueUsageContext        *UsageContext         `bson:"valueUsageContext,omitempty" json:"valueUsageContext,omitempty"`
 	ValueDosage              *Dosage               `bson:"valueDosage,omitempty" json:"valueDosage,omitempty"`
 	ValueMeta                *Meta                 `bson:"valueMeta,omitempty" json:"valueMeta,omitempty"`
-	Resource                 json.RawMessage       `bson:"resource,omitempty" json:"resource,omitempty"`
+	Resource                 *BaseResource         `bson:"resource,omitempty" json:"resource,omitempty"`
 	Part                     []ParametersParameter `bson:"part,omitempty" json:"part,omitempty"`
 }
 type OtherParameters Parameters
