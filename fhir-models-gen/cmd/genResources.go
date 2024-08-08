@@ -265,11 +265,6 @@ func generateResourceOrType(resources ResourceMap, requiredTypes map[string]bool
 	file.Commentf("%s is documented here %s", definition.Name, definition.Url)
 	var err error
 	file.Type().Id(definition.Name).StructFunc(func(rootStruct *jen.Group) {
-		if containedHasType {
-			if definition.Kind == fhir.StructureDefinitionKindResource {
-				rootStruct.Id("BaseResource").Line()
-			}
-		}
 		_, err = appendFields(resources, requiredTypes, requiredValueSetBindings, file, rootStruct, definition.Name, elementDefinitions, 1, 1)
 	})
 	if err != nil {

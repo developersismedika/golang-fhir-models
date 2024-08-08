@@ -21,8 +21,6 @@ import "encoding/json"
 
 // OperationDefinition is documented here http://hl7.org/fhir/StructureDefinition/OperationDefinition
 type OperationDefinition struct {
-	BaseResource
-
 	Id                *string                        `bson:"id,omitempty" json:"id,omitempty"`
 	Meta              *Meta                          `bson:"meta,omitempty" json:"meta,omitempty"`
 	ImplicitRules     *string                        `bson:"implicitRules,omitempty" json:"implicitRules,omitempty"`

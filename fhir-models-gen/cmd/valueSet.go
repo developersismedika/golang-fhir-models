@@ -116,6 +116,19 @@ func generateValueSet(resources ResourceMap, valueSet fhir.ValueSet) (*jen.File,
 			jen.Return(jen.Lit("<unknown>")),
 		)
 
+	// Golang type casting
+	if *valueSet.Name == "ResourceType" {
+		file.Func().
+			Params(jen.Id("code").Id(*valueSet.Name)).
+			Id("Type").
+			Params().
+			Qual("reflect", "Type").
+			Block(
+				jen.Switch(jen.Id("code")).BlockFunc(types(*valueSet.Name, codeSystem.Concept)),
+				jen.Return(jen.Qual("reflect", "TypeOf").Call(jen.Nil())),
+			)
+	}
+
 	return file, nil
 }
 
@@ -221,6 +234,17 @@ func definitions(valueSetName string, concepts []fhir.CodeSystemConcept) func(gr
 			}
 			if len(concept.Concept) > 0 {
 				definitions(valueSetName, concept.Concept)(group)
+			}
+		}
+	}
+}
+
+func types(valueSetName string, concepts []fhir.CodeSystemConcept) func(group *jen.Group) {
+	return func(group *jen.Group) {
+		for _, concept := range concepts {
+			group.Case(jen.Id(codeIdentifier(valueSetName, concept.Code))).Block(jen.Return(jen.Qual("reflect", "TypeOf").Call(jen.Id(concept.Code).Values())))
+			if len(concept.Concept) > 0 {
+				types(valueSetName, concept.Concept)(group)
 			}
 		}
 	}
