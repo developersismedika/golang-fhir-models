@@ -90,8 +90,8 @@ type OtherParameters Parameters
 // MarshalJSON marshals the given Parameters as JSON into a byte slice
 func (r Parameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherParameters
 		ResourceType string `json:"resourceType"`
+		OtherParameters
 	}{
 		OtherParameters: OtherParameters(r),
 		ResourceType:    "Parameters",

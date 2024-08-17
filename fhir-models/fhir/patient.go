@@ -79,8 +79,8 @@ type OtherPatient Patient
 // MarshalJSON marshals the given Patient as JSON into a byte slice
 func (r Patient) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherPatient
 		ResourceType string `json:"resourceType"`
+		OtherPatient
 	}{
 		OtherPatient: OtherPatient(r),
 		ResourceType: "Patient",

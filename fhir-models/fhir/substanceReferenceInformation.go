@@ -80,8 +80,8 @@ type OtherSubstanceReferenceInformation SubstanceReferenceInformation
 // MarshalJSON marshals the given SubstanceReferenceInformation as JSON into a byte slice
 func (r SubstanceReferenceInformation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherSubstanceReferenceInformation
 		ResourceType string `json:"resourceType"`
+		OtherSubstanceReferenceInformation
 	}{
 		OtherSubstanceReferenceInformation: OtherSubstanceReferenceInformation(r),
 		ResourceType:                       "SubstanceReferenceInformation",

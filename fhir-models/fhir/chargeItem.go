@@ -71,8 +71,8 @@ type OtherChargeItem ChargeItem
 // MarshalJSON marshals the given ChargeItem as JSON into a byte slice
 func (r ChargeItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherChargeItem
 		ResourceType string `json:"resourceType"`
+		OtherChargeItem
 	}{
 		OtherChargeItem: OtherChargeItem(r),
 		ResourceType:    "ChargeItem",

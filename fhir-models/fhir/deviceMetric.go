@@ -53,8 +53,8 @@ type OtherDeviceMetric DeviceMetric
 // MarshalJSON marshals the given DeviceMetric as JSON into a byte slice
 func (r DeviceMetric) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherDeviceMetric
 		ResourceType string `json:"resourceType"`
+		OtherDeviceMetric
 	}{
 		OtherDeviceMetric: OtherDeviceMetric(r),
 		ResourceType:      "DeviceMetric",

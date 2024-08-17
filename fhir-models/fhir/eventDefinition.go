@@ -64,8 +64,8 @@ type OtherEventDefinition EventDefinition
 // MarshalJSON marshals the given EventDefinition as JSON into a byte slice
 func (r EventDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherEventDefinition
 		ResourceType string `json:"resourceType"`
+		OtherEventDefinition
 	}{
 		OtherEventDefinition: OtherEventDefinition(r),
 		ResourceType:         "EventDefinition",

@@ -69,8 +69,8 @@ type OtherLocation Location
 // MarshalJSON marshals the given Location as JSON into a byte slice
 func (r Location) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherLocation
 		ResourceType string `json:"resourceType"`
+		OtherLocation
 	}{
 		OtherLocation: OtherLocation(r),
 		ResourceType:  "Location",

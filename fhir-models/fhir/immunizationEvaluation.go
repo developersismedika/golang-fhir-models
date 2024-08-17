@@ -50,8 +50,8 @@ type OtherImmunizationEvaluation ImmunizationEvaluation
 // MarshalJSON marshals the given ImmunizationEvaluation as JSON into a byte slice
 func (r ImmunizationEvaluation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherImmunizationEvaluation
 		ResourceType string `json:"resourceType"`
+		OtherImmunizationEvaluation
 	}{
 		OtherImmunizationEvaluation: OtherImmunizationEvaluation(r),
 		ResourceType:                "ImmunizationEvaluation",

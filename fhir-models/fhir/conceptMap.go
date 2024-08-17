@@ -103,8 +103,8 @@ type OtherConceptMap ConceptMap
 // MarshalJSON marshals the given ConceptMap as JSON into a byte slice
 func (r ConceptMap) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherConceptMap
 		ResourceType string `json:"resourceType"`
+		OtherConceptMap
 	}{
 		OtherConceptMap: OtherConceptMap(r),
 		ResourceType:    "ConceptMap",

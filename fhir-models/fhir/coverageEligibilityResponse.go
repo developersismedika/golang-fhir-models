@@ -97,8 +97,8 @@ type OtherCoverageEligibilityResponse CoverageEligibilityResponse
 // MarshalJSON marshals the given CoverageEligibilityResponse as JSON into a byte slice
 func (r CoverageEligibilityResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherCoverageEligibilityResponse
 		ResourceType string `json:"resourceType"`
+		OtherCoverageEligibilityResponse
 	}{
 		OtherCoverageEligibilityResponse: OtherCoverageEligibilityResponse(r),
 		ResourceType:                     "CoverageEligibilityResponse",

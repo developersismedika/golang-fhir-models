@@ -76,8 +76,8 @@ type OtherMessageDefinition MessageDefinition
 // MarshalJSON marshals the given MessageDefinition as JSON into a byte slice
 func (r MessageDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherMessageDefinition
 		ResourceType string `json:"resourceType"`
+		OtherMessageDefinition
 	}{
 		OtherMessageDefinition: OtherMessageDefinition(r),
 		ResourceType:           "MessageDefinition",

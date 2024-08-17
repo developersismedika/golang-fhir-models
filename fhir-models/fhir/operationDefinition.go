@@ -98,8 +98,8 @@ type OtherOperationDefinition OperationDefinition
 // MarshalJSON marshals the given OperationDefinition as JSON into a byte slice
 func (r OperationDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherOperationDefinition
 		ResourceType string `json:"resourceType"`
+		OtherOperationDefinition
 	}{
 		OtherOperationDefinition: OtherOperationDefinition(r),
 		ResourceType:             "OperationDefinition",

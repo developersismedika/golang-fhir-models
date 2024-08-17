@@ -63,8 +63,8 @@ type OtherDetectedIssue DetectedIssue
 // MarshalJSON marshals the given DetectedIssue as JSON into a byte slice
 func (r DetectedIssue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherDetectedIssue
 		ResourceType string `json:"resourceType"`
+		OtherDetectedIssue
 	}{
 		OtherDetectedIssue: OtherDetectedIssue(r),
 		ResourceType:       "DetectedIssue",

@@ -52,8 +52,8 @@ type OtherPerson Person
 // MarshalJSON marshals the given Person as JSON into a byte slice
 func (r Person) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherPerson
 		ResourceType string `json:"resourceType"`
+		OtherPerson
 	}{
 		OtherPerson:  OtherPerson(r),
 		ResourceType: "Person",

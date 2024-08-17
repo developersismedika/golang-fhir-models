@@ -128,8 +128,8 @@ type OtherExampleScenario ExampleScenario
 // MarshalJSON marshals the given ExampleScenario as JSON into a byte slice
 func (r ExampleScenario) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherExampleScenario
 		ResourceType string `json:"resourceType"`
+		OtherExampleScenario
 	}{
 		OtherExampleScenario: OtherExampleScenario(r),
 		ResourceType:         "ExampleScenario",

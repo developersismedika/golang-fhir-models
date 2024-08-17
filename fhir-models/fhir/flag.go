@@ -43,8 +43,8 @@ type OtherFlag Flag
 // MarshalJSON marshals the given Flag as JSON into a byte slice
 func (r Flag) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherFlag
 		ResourceType string `json:"resourceType"`
+		OtherFlag
 	}{
 		OtherFlag:    OtherFlag(r),
 		ResourceType: "Flag",

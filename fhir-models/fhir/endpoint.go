@@ -46,8 +46,8 @@ type OtherEndpoint Endpoint
 // MarshalJSON marshals the given Endpoint as JSON into a byte slice
 func (r Endpoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherEndpoint
 		ResourceType string `json:"resourceType"`
+		OtherEndpoint
 	}{
 		OtherEndpoint: OtherEndpoint(r),
 		ResourceType:  "Endpoint",

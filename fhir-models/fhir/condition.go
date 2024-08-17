@@ -75,8 +75,8 @@ type OtherCondition Condition
 // MarshalJSON marshals the given Condition as JSON into a byte slice
 func (r Condition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherCondition
 		ResourceType string `json:"resourceType"`
+		OtherCondition
 	}{
 		OtherCondition: OtherCondition(r),
 		ResourceType:   "Condition",

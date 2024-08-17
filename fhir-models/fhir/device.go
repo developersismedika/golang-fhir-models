@@ -102,8 +102,8 @@ type OtherDevice Device
 // MarshalJSON marshals the given Device as JSON into a byte slice
 func (r Device) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherDevice
 		ResourceType string `json:"resourceType"`
+		OtherDevice
 	}{
 		OtherDevice:  OtherDevice(r),
 		ResourceType: "Device",

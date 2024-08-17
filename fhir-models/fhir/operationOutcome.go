@@ -47,8 +47,8 @@ type OtherOperationOutcome OperationOutcome
 // MarshalJSON marshals the given OperationOutcome as JSON into a byte slice
 func (r OperationOutcome) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherOperationOutcome
 		ResourceType string `json:"resourceType"`
+		OtherOperationOutcome
 	}{
 		OtherOperationOutcome: OtherOperationOutcome(r),
 		ResourceType:          "OperationOutcome",

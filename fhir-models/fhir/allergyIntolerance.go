@@ -67,8 +67,8 @@ type OtherAllergyIntolerance AllergyIntolerance
 // MarshalJSON marshals the given AllergyIntolerance as JSON into a byte slice
 func (r AllergyIntolerance) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherAllergyIntolerance
 		ResourceType string `json:"resourceType"`
+		OtherAllergyIntolerance
 	}{
 		OtherAllergyIntolerance: OtherAllergyIntolerance(r),
 		ResourceType:            "AllergyIntolerance",

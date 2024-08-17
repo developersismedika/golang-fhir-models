@@ -63,8 +63,8 @@ type OtherProvenance Provenance
 // MarshalJSON marshals the given Provenance as JSON into a byte slice
 func (r Provenance) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherProvenance
 		ResourceType string `json:"resourceType"`
+		OtherProvenance
 	}{
 		OtherProvenance: OtherProvenance(r),
 		ResourceType:    "Provenance",

@@ -56,8 +56,8 @@ type OtherSupplyDelivery SupplyDelivery
 // MarshalJSON marshals the given SupplyDelivery as JSON into a byte slice
 func (r SupplyDelivery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherSupplyDelivery
 		ResourceType string `json:"resourceType"`
+		OtherSupplyDelivery
 	}{
 		OtherSupplyDelivery: OtherSupplyDelivery(r),
 		ResourceType:        "SupplyDelivery",

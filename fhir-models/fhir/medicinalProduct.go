@@ -102,8 +102,8 @@ type OtherMedicinalProduct MedicinalProduct
 // MarshalJSON marshals the given MedicinalProduct as JSON into a byte slice
 func (r MedicinalProduct) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherMedicinalProduct
 		ResourceType string `json:"resourceType"`
+		OtherMedicinalProduct
 	}{
 		OtherMedicinalProduct: OtherMedicinalProduct(r),
 		ResourceType:          "MedicinalProduct",

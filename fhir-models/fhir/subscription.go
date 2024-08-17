@@ -51,8 +51,8 @@ type OtherSubscription Subscription
 // MarshalJSON marshals the given Subscription as JSON into a byte slice
 func (r Subscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherSubscription
 		ResourceType string `json:"resourceType"`
+		OtherSubscription
 	}{
 		OtherSubscription: OtherSubscription(r),
 		ResourceType:      "Subscription",

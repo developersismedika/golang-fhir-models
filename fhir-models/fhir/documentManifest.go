@@ -54,8 +54,8 @@ type OtherDocumentManifest DocumentManifest
 // MarshalJSON marshals the given DocumentManifest as JSON into a byte slice
 func (r DocumentManifest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherDocumentManifest
 		ResourceType string `json:"resourceType"`
+		OtherDocumentManifest
 	}{
 		OtherDocumentManifest: OtherDocumentManifest(r),
 		ResourceType:          "DocumentManifest",

@@ -76,8 +76,8 @@ type OtherInvoice Invoice
 // MarshalJSON marshals the given Invoice as JSON into a byte slice
 func (r Invoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherInvoice
 		ResourceType string `json:"resourceType"`
+		OtherInvoice
 	}{
 		OtherInvoice: OtherInvoice(r),
 		ResourceType: "Invoice",

@@ -43,8 +43,8 @@ type OtherAppointmentResponse AppointmentResponse
 // MarshalJSON marshals the given AppointmentResponse as JSON into a byte slice
 func (r AppointmentResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherAppointmentResponse
 		ResourceType string `json:"resourceType"`
+		OtherAppointmentResponse
 	}{
 		OtherAppointmentResponse: OtherAppointmentResponse(r),
 		ResourceType:             "AppointmentResponse",

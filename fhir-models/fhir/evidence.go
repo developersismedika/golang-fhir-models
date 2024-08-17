@@ -63,8 +63,8 @@ type OtherEvidence Evidence
 // MarshalJSON marshals the given Evidence as JSON into a byte slice
 func (r Evidence) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherEvidence
 		ResourceType string `json:"resourceType"`
+		OtherEvidence
 	}{
 		OtherEvidence: OtherEvidence(r),
 		ResourceType:  "Evidence",

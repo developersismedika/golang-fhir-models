@@ -43,8 +43,8 @@ type OtherSchedule Schedule
 // MarshalJSON marshals the given Schedule as JSON into a byte slice
 func (r Schedule) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherSchedule
 		ResourceType string `json:"resourceType"`
+		OtherSchedule
 	}{
 		OtherSchedule: OtherSchedule(r),
 		ResourceType:  "Schedule",

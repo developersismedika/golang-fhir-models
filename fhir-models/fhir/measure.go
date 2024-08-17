@@ -120,8 +120,8 @@ type OtherMeasure Measure
 // MarshalJSON marshals the given Measure as JSON into a byte slice
 func (r Measure) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherMeasure
 		ResourceType string `json:"resourceType"`
+		OtherMeasure
 	}{
 		OtherMeasure: OtherMeasure(r),
 		ResourceType: "Measure",

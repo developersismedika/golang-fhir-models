@@ -55,8 +55,8 @@ type OtherCatalogEntry CatalogEntry
 // MarshalJSON marshals the given CatalogEntry as JSON into a byte slice
 func (r CatalogEntry) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherCatalogEntry
 		ResourceType string `json:"resourceType"`
+		OtherCatalogEntry
 	}{
 		OtherCatalogEntry: OtherCatalogEntry(r),
 		ResourceType:      "CatalogEntry",

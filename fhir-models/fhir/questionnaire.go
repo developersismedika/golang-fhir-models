@@ -124,8 +124,8 @@ type OtherQuestionnaire Questionnaire
 // MarshalJSON marshals the given Questionnaire as JSON into a byte slice
 func (r Questionnaire) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherQuestionnaire
 		ResourceType string `json:"resourceType"`
+		OtherQuestionnaire
 	}{
 		OtherQuestionnaire: OtherQuestionnaire(r),
 		ResourceType:       "Questionnaire",

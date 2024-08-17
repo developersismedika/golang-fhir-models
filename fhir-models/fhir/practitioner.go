@@ -54,8 +54,8 @@ type OtherPractitioner Practitioner
 // MarshalJSON marshals the given Practitioner as JSON into a byte slice
 func (r Practitioner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherPractitioner
 		ResourceType string `json:"resourceType"`
+		OtherPractitioner
 	}{
 		OtherPractitioner: OtherPractitioner(r),
 		ResourceType:      "Practitioner",

@@ -76,8 +76,8 @@ type OtherCoverage Coverage
 // MarshalJSON marshals the given Coverage as JSON into a byte slice
 func (r Coverage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherCoverage
 		ResourceType string `json:"resourceType"`
+		OtherCoverage
 	}{
 		OtherCoverage: OtherCoverage(r),
 		ResourceType:  "Coverage",

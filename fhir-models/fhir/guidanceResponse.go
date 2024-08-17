@@ -52,8 +52,8 @@ type OtherGuidanceResponse GuidanceResponse
 // MarshalJSON marshals the given GuidanceResponse as JSON into a byte slice
 func (r GuidanceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherGuidanceResponse
 		ResourceType string `json:"resourceType"`
+		OtherGuidanceResponse
 	}{
 		OtherGuidanceResponse: OtherGuidanceResponse(r),
 		ResourceType:          "GuidanceResponse",

@@ -57,8 +57,8 @@ type OtherList List
 // MarshalJSON marshals the given List as JSON into a byte slice
 func (r List) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherList
 		ResourceType string `json:"resourceType"`
+		OtherList
 	}{
 		OtherList:    OtherList(r),
 		ResourceType: "List",

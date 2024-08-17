@@ -74,8 +74,8 @@ type OtherResearchStudy ResearchStudy
 // MarshalJSON marshals the given ResearchStudy as JSON into a byte slice
 func (r ResearchStudy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherResearchStudy
 		ResourceType string `json:"resourceType"`
+		OtherResearchStudy
 	}{
 		OtherResearchStudy: OtherResearchStudy(r),
 		ResourceType:       "ResearchStudy",

@@ -54,8 +54,8 @@ type OtherOrganization Organization
 // MarshalJSON marshals the given Organization as JSON into a byte slice
 func (r Organization) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherOrganization
 		ResourceType string `json:"resourceType"`
+		OtherOrganization
 	}{
 		OtherOrganization: OtherOrganization(r),
 		ResourceType:      "Organization",

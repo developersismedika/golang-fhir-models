@@ -124,8 +124,8 @@ type OtherInsurancePlan InsurancePlan
 // MarshalJSON marshals the given InsurancePlan as JSON into a byte slice
 func (r InsurancePlan) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherInsurancePlan
 		ResourceType string `json:"resourceType"`
+		OtherInsurancePlan
 	}{
 		OtherInsurancePlan: OtherInsurancePlan(r),
 		ResourceType:       "InsurancePlan",

@@ -42,8 +42,8 @@ type OtherEnrollmentRequest EnrollmentRequest
 // MarshalJSON marshals the given EnrollmentRequest as JSON into a byte slice
 func (r EnrollmentRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherEnrollmentRequest
 		ResourceType string `json:"resourceType"`
+		OtherEnrollmentRequest
 	}{
 		OtherEnrollmentRequest: OtherEnrollmentRequest(r),
 		ResourceType:           "EnrollmentRequest",

@@ -67,8 +67,8 @@ type OtherLibrary Library
 // MarshalJSON marshals the given Library as JSON into a byte slice
 func (r Library) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherLibrary
 		ResourceType string `json:"resourceType"`
+		OtherLibrary
 	}{
 		OtherLibrary: OtherLibrary(r),
 		ResourceType: "Library",

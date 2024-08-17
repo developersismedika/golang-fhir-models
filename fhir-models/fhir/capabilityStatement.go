@@ -182,8 +182,8 @@ type OtherCapabilityStatement CapabilityStatement
 // MarshalJSON marshals the given CapabilityStatement as JSON into a byte slice
 func (r CapabilityStatement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherCapabilityStatement
 		ResourceType string `json:"resourceType"`
+		OtherCapabilityStatement
 	}{
 		OtherCapabilityStatement: OtherCapabilityStatement(r),
 		ResourceType:             "CapabilityStatement",

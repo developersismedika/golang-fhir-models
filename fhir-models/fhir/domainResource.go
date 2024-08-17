@@ -35,8 +35,8 @@ type OtherDomainResource DomainResource
 // MarshalJSON marshals the given DomainResource as JSON into a byte slice
 func (r DomainResource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherDomainResource
 		ResourceType string `json:"resourceType"`
+		OtherDomainResource
 	}{
 		OtherDomainResource: OtherDomainResource(r),
 		ResourceType:        "DomainResource",

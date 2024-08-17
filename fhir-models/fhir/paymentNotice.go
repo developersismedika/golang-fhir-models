@@ -47,8 +47,8 @@ type OtherPaymentNotice PaymentNotice
 // MarshalJSON marshals the given PaymentNotice as JSON into a byte slice
 func (r PaymentNotice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherPaymentNotice
 		ResourceType string `json:"resourceType"`
+		OtherPaymentNotice
 	}{
 		OtherPaymentNotice: OtherPaymentNotice(r),
 		ResourceType:       "PaymentNotice",

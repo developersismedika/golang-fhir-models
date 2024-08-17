@@ -103,8 +103,8 @@ type OtherObservation Observation
 // MarshalJSON marshals the given Observation as JSON into a byte slice
 func (r Observation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherObservation
 		ResourceType string `json:"resourceType"`
+		OtherObservation
 	}{
 		OtherObservation: OtherObservation(r),
 		ResourceType:     "Observation",

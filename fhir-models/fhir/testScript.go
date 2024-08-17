@@ -216,8 +216,8 @@ type OtherTestScript TestScript
 // MarshalJSON marshals the given TestScript as JSON into a byte slice
 func (r TestScript) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherTestScript
 		ResourceType string `json:"resourceType"`
+		OtherTestScript
 	}{
 		OtherTestScript: OtherTestScript(r),
 		ResourceType:    "TestScript",

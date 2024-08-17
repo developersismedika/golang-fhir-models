@@ -99,8 +99,8 @@ type OtherAuditEvent AuditEvent
 // MarshalJSON marshals the given AuditEvent as JSON into a byte slice
 func (r AuditEvent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherAuditEvent
 		ResourceType string `json:"resourceType"`
+		OtherAuditEvent
 	}{
 		OtherAuditEvent: OtherAuditEvent(r),
 		ResourceType:    "AuditEvent",

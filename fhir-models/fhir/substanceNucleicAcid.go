@@ -70,8 +70,8 @@ type OtherSubstanceNucleicAcid SubstanceNucleicAcid
 // MarshalJSON marshals the given SubstanceNucleicAcid as JSON into a byte slice
 func (r SubstanceNucleicAcid) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherSubstanceNucleicAcid
 		ResourceType string `json:"resourceType"`
+		OtherSubstanceNucleicAcid
 	}{
 		OtherSubstanceNucleicAcid: OtherSubstanceNucleicAcid(r),
 		ResourceType:              "SubstanceNucleicAcid",

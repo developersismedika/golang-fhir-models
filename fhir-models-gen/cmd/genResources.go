@@ -278,11 +278,11 @@ func generateResourceOrType(resources ResourceMap, requiredTypes map[string]bool
 		file.Func().Params(jen.Id("r").Id(definition.Name)).Id("MarshalJSON").Params().
 			Params(jen.Op("[]").Byte(), jen.Error()).Block(
 			jen.Return().Qual("encoding/json", "Marshal").Call(jen.Struct(
-				jen.Id("Other"+definition.Name),
 				jen.Id("ResourceType").String().Tag(map[string]string{"json": "resourceType"}),
+				jen.Id("Other"+definition.Name),
 			).Values(jen.Dict{
-				jen.Id("Other" + definition.Name): jen.Id("Other" + definition.Name).Call(jen.Id("r")),
 				jen.Id("ResourceType"):            jen.Lit(definition.Name),
+				jen.Id("Other" + definition.Name): jen.Id("Other" + definition.Name).Call(jen.Id("r")),
 			})),
 		)
 	}

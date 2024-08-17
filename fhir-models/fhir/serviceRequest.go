@@ -73,8 +73,8 @@ type OtherServiceRequest ServiceRequest
 // MarshalJSON marshals the given ServiceRequest as JSON into a byte slice
 func (r ServiceRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherServiceRequest
 		ResourceType string `json:"resourceType"`
+		OtherServiceRequest
 	}{
 		OtherServiceRequest: OtherServiceRequest(r),
 		ResourceType:        "ServiceRequest",

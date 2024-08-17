@@ -94,8 +94,8 @@ type OtherMeasureReport MeasureReport
 // MarshalJSON marshals the given MeasureReport as JSON into a byte slice
 func (r MeasureReport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherMeasureReport
 		ResourceType string `json:"resourceType"`
+		OtherMeasureReport
 	}{
 		OtherMeasureReport: OtherMeasureReport(r),
 		ResourceType:       "MeasureReport",

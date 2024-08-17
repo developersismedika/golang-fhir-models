@@ -66,8 +66,8 @@ type OtherGroup Group
 // MarshalJSON marshals the given Group as JSON into a byte slice
 func (r Group) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		OtherGroup
 		ResourceType string `json:"resourceType"`
+		OtherGroup
 	}{
 		OtherGroup:   OtherGroup(r),
 		ResourceType: "Group",
