@@ -110,7 +110,7 @@ type OtherCodeSystem CodeSystem
 
 // MarshalJSON marshals the given CodeSystem as JSON into a byte slice
 func (r CodeSystem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherCodeSystem
 	}{
@@ -122,7 +122,7 @@ func (r CodeSystem) MarshalJSON() ([]byte, error) {
 // UnmarshalCodeSystem unmarshals a CodeSystem.
 func UnmarshalCodeSystem(b []byte) (CodeSystem, error) {
 	var codeSystem CodeSystem
-	if err := json.Unmarshal(b, &codeSystem); err != nil {
+	if err := jsonUnmarshal(b, &codeSystem); err != nil {
 		return codeSystem, err
 	}
 	return codeSystem, nil

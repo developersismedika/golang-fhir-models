@@ -68,7 +68,7 @@ type OtherVisionPrescription VisionPrescription
 
 // MarshalJSON marshals the given VisionPrescription as JSON into a byte slice
 func (r VisionPrescription) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherVisionPrescription
 	}{
@@ -80,7 +80,7 @@ func (r VisionPrescription) MarshalJSON() ([]byte, error) {
 // UnmarshalVisionPrescription unmarshals a VisionPrescription.
 func UnmarshalVisionPrescription(b []byte) (VisionPrescription, error) {
 	var visionPrescription VisionPrescription
-	if err := json.Unmarshal(b, &visionPrescription); err != nil {
+	if err := jsonUnmarshal(b, &visionPrescription); err != nil {
 		return visionPrescription, err
 	}
 	return visionPrescription, nil

@@ -69,7 +69,7 @@ type OtherObservationDefinition ObservationDefinition
 
 // MarshalJSON marshals the given ObservationDefinition as JSON into a byte slice
 func (r ObservationDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherObservationDefinition
 	}{
@@ -81,7 +81,7 @@ func (r ObservationDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalObservationDefinition unmarshals a ObservationDefinition.
 func UnmarshalObservationDefinition(b []byte) (ObservationDefinition, error) {
 	var observationDefinition ObservationDefinition
-	if err := json.Unmarshal(b, &observationDefinition); err != nil {
+	if err := jsonUnmarshal(b, &observationDefinition); err != nil {
 		return observationDefinition, err
 	}
 	return observationDefinition, nil

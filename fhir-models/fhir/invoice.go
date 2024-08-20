@@ -75,7 +75,7 @@ type OtherInvoice Invoice
 
 // MarshalJSON marshals the given Invoice as JSON into a byte slice
 func (r Invoice) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherInvoice
 	}{
@@ -87,7 +87,7 @@ func (r Invoice) MarshalJSON() ([]byte, error) {
 // UnmarshalInvoice unmarshals a Invoice.
 func UnmarshalInvoice(b []byte) (Invoice, error) {
 	var invoice Invoice
-	if err := json.Unmarshal(b, &invoice); err != nil {
+	if err := jsonUnmarshal(b, &invoice); err != nil {
 		return invoice, err
 	}
 	return invoice, nil

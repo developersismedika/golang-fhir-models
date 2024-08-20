@@ -15,7 +15,6 @@
 package fhir
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 )
@@ -37,7 +36,7 @@ const (
 )
 
 func (code ChargeItemStatus) MarshalJSON() ([]byte, error) {
-	return json.Marshal(code.Code())
+	return jsonMarshal(code.Code())
 }
 func (code *ChargeItemStatus) UnmarshalJSON(json []byte) error {
 	s := strings.Trim(string(json), "\"")

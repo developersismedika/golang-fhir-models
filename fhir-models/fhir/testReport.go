@@ -110,7 +110,7 @@ type OtherTestReport TestReport
 
 // MarshalJSON marshals the given TestReport as JSON into a byte slice
 func (r TestReport) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherTestReport
 	}{
@@ -122,7 +122,7 @@ func (r TestReport) MarshalJSON() ([]byte, error) {
 // UnmarshalTestReport unmarshals a TestReport.
 func UnmarshalTestReport(b []byte) (TestReport, error) {
 	var testReport TestReport
-	if err := json.Unmarshal(b, &testReport); err != nil {
+	if err := jsonUnmarshal(b, &testReport); err != nil {
 		return testReport, err
 	}
 	return testReport, nil

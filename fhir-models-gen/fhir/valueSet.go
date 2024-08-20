@@ -132,9 +132,9 @@ type OtherValueSet ValueSet
 
 // MarshalJSON marshals the given ValueSet as JSON into a byte slice
 func (r ValueSet) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		OtherValueSet
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
+		OtherValueSet
 	}{
 		OtherValueSet: OtherValueSet(r),
 		ResourceType:  "ValueSet",
@@ -144,7 +144,7 @@ func (r ValueSet) MarshalJSON() ([]byte, error) {
 // UnmarshalValueSet unmarshals a ValueSet.
 func UnmarshalValueSet(b []byte) (ValueSet, error) {
 	var valueSet ValueSet
-	if err := json.Unmarshal(b, &valueSet); err != nil {
+	if err := jsonUnmarshal(b, &valueSet); err != nil {
 		return valueSet, err
 	}
 	return valueSet, nil

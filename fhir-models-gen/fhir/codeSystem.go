@@ -94,25 +94,25 @@ type CodeSystemConceptDesignation struct {
 	Value             string      `bson:"value" json:"value"`
 }
 type CodeSystemConceptProperty struct {
-	Id                *string     `bson:"id,omitempty" json:"id,omitempty"`
-	Extension         []Extension `bson:"extension,omitempty" json:"extension,omitempty"`
-	ModifierExtension []Extension `bson:"modifierExtension,omitempty" json:"modifierExtension,omitempty"`
-	Code              string      `bson:"code" json:"code"`
-	ValueCode         string      `bson:"valueCode" json:"valueCode"`
-	ValueCoding       Coding      `bson:"valueCoding" json:"valueCoding"`
-	ValueString       string      `bson:"valueString" json:"valueString"`
-	ValueInteger      int         `bson:"valueInteger" json:"valueInteger"`
-	ValueBoolean      bool        `bson:"valueBoolean" json:"valueBoolean"`
-	ValueDateTime     string      `bson:"valueDateTime" json:"valueDateTime"`
-	ValueDecimal      json.Number `bson:"valueDecimal" json:"valueDecimal"`
+	Id                *string      `bson:"id,omitempty" json:"id,omitempty"`
+	Extension         []Extension  `bson:"extension,omitempty" json:"extension,omitempty"`
+	ModifierExtension []Extension  `bson:"modifierExtension,omitempty" json:"modifierExtension,omitempty"`
+	Code              string       `bson:"code" json:"code"`
+	ValueCode         *string      `bson:"valueCode,omitempty" json:"valueCode,omitempty"`
+	ValueCoding       *Coding      `bson:"valueCoding,omitempty" json:"valueCoding,omitempty"`
+	ValueString       *string      `bson:"valueString,omitempty" json:"valueString,omitempty"`
+	ValueInteger      *int         `bson:"valueInteger,omitempty" json:"valueInteger,omitempty"`
+	ValueBoolean      *bool        `bson:"valueBoolean,omitempty" json:"valueBoolean,omitempty"`
+	ValueDateTime     *string      `bson:"valueDateTime,omitempty" json:"valueDateTime,omitempty"`
+	ValueDecimal      *json.Number `bson:"valueDecimal,omitempty" json:"valueDecimal,omitempty"`
 }
 type OtherCodeSystem CodeSystem
 
 // MarshalJSON marshals the given CodeSystem as JSON into a byte slice
 func (r CodeSystem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		OtherCodeSystem
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
+		OtherCodeSystem
 	}{
 		OtherCodeSystem: OtherCodeSystem(r),
 		ResourceType:    "CodeSystem",
@@ -122,7 +122,7 @@ func (r CodeSystem) MarshalJSON() ([]byte, error) {
 // UnmarshalCodeSystem unmarshals a CodeSystem.
 func UnmarshalCodeSystem(b []byte) (CodeSystem, error) {
 	var codeSystem CodeSystem
-	if err := json.Unmarshal(b, &codeSystem); err != nil {
+	if err := jsonUnmarshal(b, &codeSystem); err != nil {
 		return codeSystem, err
 	}
 	return codeSystem, nil

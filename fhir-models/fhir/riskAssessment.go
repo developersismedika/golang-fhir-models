@@ -65,7 +65,7 @@ type OtherRiskAssessment RiskAssessment
 
 // MarshalJSON marshals the given RiskAssessment as JSON into a byte slice
 func (r RiskAssessment) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherRiskAssessment
 	}{
@@ -77,7 +77,7 @@ func (r RiskAssessment) MarshalJSON() ([]byte, error) {
 // UnmarshalRiskAssessment unmarshals a RiskAssessment.
 func UnmarshalRiskAssessment(b []byte) (RiskAssessment, error) {
 	var riskAssessment RiskAssessment
-	if err := json.Unmarshal(b, &riskAssessment); err != nil {
+	if err := jsonUnmarshal(b, &riskAssessment); err != nil {
 		return riskAssessment, err
 	}
 	return riskAssessment, nil

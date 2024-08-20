@@ -120,7 +120,7 @@ type OtherEffectEvidenceSynthesis EffectEvidenceSynthesis
 
 // MarshalJSON marshals the given EffectEvidenceSynthesis as JSON into a byte slice
 func (r EffectEvidenceSynthesis) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherEffectEvidenceSynthesis
 	}{
@@ -132,7 +132,7 @@ func (r EffectEvidenceSynthesis) MarshalJSON() ([]byte, error) {
 // UnmarshalEffectEvidenceSynthesis unmarshals a EffectEvidenceSynthesis.
 func UnmarshalEffectEvidenceSynthesis(b []byte) (EffectEvidenceSynthesis, error) {
 	var effectEvidenceSynthesis EffectEvidenceSynthesis
-	if err := json.Unmarshal(b, &effectEvidenceSynthesis); err != nil {
+	if err := jsonUnmarshal(b, &effectEvidenceSynthesis); err != nil {
 		return effectEvidenceSynthesis, err
 	}
 	return effectEvidenceSynthesis, nil

@@ -83,9 +83,9 @@ type OtherBundle Bundle
 
 // MarshalJSON marshals the given Bundle as JSON into a byte slice
 func (r Bundle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		OtherBundle
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
+		OtherBundle
 	}{
 		OtherBundle:  OtherBundle(r),
 		ResourceType: "Bundle",
@@ -95,7 +95,7 @@ func (r Bundle) MarshalJSON() ([]byte, error) {
 // UnmarshalBundle unmarshals a Bundle.
 func UnmarshalBundle(b []byte) (Bundle, error) {
 	var bundle Bundle
-	if err := json.Unmarshal(b, &bundle); err != nil {
+	if err := jsonUnmarshal(b, &bundle); err != nil {
 		return bundle, err
 	}
 	return bundle, nil

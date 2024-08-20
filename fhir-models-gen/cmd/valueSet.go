@@ -58,7 +58,7 @@ func generateValueSet(resources ResourceMap, valueSet fhir.ValueSet) (*jen.File,
 		Params().
 		Params(jen.Op("[]").Byte(), jen.Error()).
 		Block(
-			jen.Return(jen.Qual("encoding/json", "Marshal").Call(jen.Id("code").Op(".").Id("Code").Call())),
+			jen.Return(jen.Id("jsonMarshal").Call(jen.Id("code").Op(".").Id("Code").Call())),
 		)
 
 	// UnmarshalJSON function

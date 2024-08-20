@@ -57,7 +57,7 @@ type OtherMedia Media
 
 // MarshalJSON marshals the given Media as JSON into a byte slice
 func (r Media) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherMedia
 	}{
@@ -69,7 +69,7 @@ func (r Media) MarshalJSON() ([]byte, error) {
 // UnmarshalMedia unmarshals a Media.
 func UnmarshalMedia(b []byte) (Media, error) {
 	var media Media
-	if err := json.Unmarshal(b, &media); err != nil {
+	if err := jsonUnmarshal(b, &media); err != nil {
 		return media, err
 	}
 	return media, nil

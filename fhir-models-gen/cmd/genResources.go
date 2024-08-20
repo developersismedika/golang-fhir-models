@@ -277,7 +277,7 @@ func generateResourceOrType(resources ResourceMap, requiredTypes map[string]bool
 		file.Commentf("MarshalJSON marshals the given %s as JSON into a byte slice", definition.Name)
 		file.Func().Params(jen.Id("r").Id(definition.Name)).Id("MarshalJSON").Params().
 			Params(jen.Op("[]").Byte(), jen.Error()).Block(
-			jen.Return().Qual("encoding/json", "Marshal").Call(jen.Struct(
+			jen.Return().Id("jsonMarshal").Call(jen.Struct(
 				jen.Id("ResourceType").String().Tag(map[string]string{"json": "resourceType"}),
 				jen.Id("Other"+definition.Name),
 			).Values(jen.Dict{
@@ -296,7 +296,7 @@ func generateResourceOrType(resources ResourceMap, requiredTypes map[string]bool
 			Block(
 				jen.Var().Id(FirstLower(definition.Name)).Id(definition.Name),
 				jen.If(
-					jen.Err().Op(":=").Qual("encoding/json", "Unmarshal").Call(
+					jen.Err().Op(":=").Id("jsonUnmarshal").Call(
 						jen.Id("b"),
 						jen.Op("&").Id(FirstLower(definition.Name)),
 					),

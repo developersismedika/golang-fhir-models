@@ -258,7 +258,7 @@ type OtherContract Contract
 
 // MarshalJSON marshals the given Contract as JSON into a byte slice
 func (r Contract) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherContract
 	}{
@@ -270,7 +270,7 @@ func (r Contract) MarshalJSON() ([]byte, error) {
 // UnmarshalContract unmarshals a Contract.
 func UnmarshalContract(b []byte) (Contract, error) {
 	var contract Contract
-	if err := json.Unmarshal(b, &contract); err != nil {
+	if err := jsonUnmarshal(b, &contract); err != nil {
 		return contract, err
 	}
 	return contract, nil

@@ -73,7 +73,7 @@ type OtherQuestionnaireResponse QuestionnaireResponse
 
 // MarshalJSON marshals the given QuestionnaireResponse as JSON into a byte slice
 func (r QuestionnaireResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherQuestionnaireResponse
 	}{
@@ -85,7 +85,7 @@ func (r QuestionnaireResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalQuestionnaireResponse unmarshals a QuestionnaireResponse.
 func UnmarshalQuestionnaireResponse(b []byte) (QuestionnaireResponse, error) {
 	var questionnaireResponse QuestionnaireResponse
-	if err := json.Unmarshal(b, &questionnaireResponse); err != nil {
+	if err := jsonUnmarshal(b, &questionnaireResponse); err != nil {
 		return questionnaireResponse, err
 	}
 	return questionnaireResponse, nil

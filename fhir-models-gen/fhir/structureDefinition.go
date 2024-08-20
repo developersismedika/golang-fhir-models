@@ -89,9 +89,9 @@ type OtherStructureDefinition StructureDefinition
 
 // MarshalJSON marshals the given StructureDefinition as JSON into a byte slice
 func (r StructureDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		OtherStructureDefinition
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
+		OtherStructureDefinition
 	}{
 		OtherStructureDefinition: OtherStructureDefinition(r),
 		ResourceType:             "StructureDefinition",
@@ -101,7 +101,7 @@ func (r StructureDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalStructureDefinition unmarshals a StructureDefinition.
 func UnmarshalStructureDefinition(b []byte) (StructureDefinition, error) {
 	var structureDefinition StructureDefinition
-	if err := json.Unmarshal(b, &structureDefinition); err != nil {
+	if err := jsonUnmarshal(b, &structureDefinition); err != nil {
 		return structureDefinition, err
 	}
 	return structureDefinition, nil

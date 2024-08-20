@@ -81,7 +81,7 @@ type OtherBiologicallyDerivedProduct BiologicallyDerivedProduct
 
 // MarshalJSON marshals the given BiologicallyDerivedProduct as JSON into a byte slice
 func (r BiologicallyDerivedProduct) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherBiologicallyDerivedProduct
 	}{
@@ -93,7 +93,7 @@ func (r BiologicallyDerivedProduct) MarshalJSON() ([]byte, error) {
 // UnmarshalBiologicallyDerivedProduct unmarshals a BiologicallyDerivedProduct.
 func UnmarshalBiologicallyDerivedProduct(b []byte) (BiologicallyDerivedProduct, error) {
 	var biologicallyDerivedProduct BiologicallyDerivedProduct
-	if err := json.Unmarshal(b, &biologicallyDerivedProduct); err != nil {
+	if err := jsonUnmarshal(b, &biologicallyDerivedProduct); err != nil {
 		return biologicallyDerivedProduct, err
 	}
 	return biologicallyDerivedProduct, nil

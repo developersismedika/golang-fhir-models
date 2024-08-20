@@ -1,7 +1,6 @@
 package fhir
 
 import (
-	"encoding/json"
 	"reflect"
 )
 
@@ -36,8 +35,7 @@ func (r *BaseResource) MarshalJSON() ([]byte, error) {
 	payload.Elem().FieldByName(r.Type().Name()).Set(reflect.ValueOf(r.Resource).Elem())
 	payload.Elem().FieldByName("ResourceType").Set(reflect.ValueOf(r.ResourceType))
 
-	// result := reflect.ValueOf(payload).MethodByName("MarshalJSON").Call([]reflect.Value{})
-	result := reflect.ValueOf(json.Marshal).Call([]reflect.Value{payload})
+	result := reflect.ValueOf(jsonMarshal).Call([]reflect.Value{payload})
 
 	err, ok := result[1].Interface().(error)
 	if ok && err != nil {
@@ -49,14 +47,14 @@ func (r *BaseResource) MarshalJSON() ([]byte, error) {
 
 func (r *BaseResource) UnmarshalJSON(data []byte) error {
 	var def resourceDefinition
-	err := json.Unmarshal(data, &def)
+	err := jsonUnmarshal(data, &def)
 	if err != nil {
 		return err
 	}
 
 	resource := reflect.New(def.ResourceType.Type())
 
-	result := reflect.ValueOf(json.Unmarshal).Call([]reflect.Value{reflect.ValueOf(data), resource})
+	result := reflect.ValueOf(jsonUnmarshal).Call([]reflect.Value{reflect.ValueOf(data), resource})
 	err, ok := result[0].Interface().(error)
 	if ok && err != nil {
 		return err

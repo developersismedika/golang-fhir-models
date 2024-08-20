@@ -185,7 +185,7 @@ type OtherTask Task
 
 // MarshalJSON marshals the given Task as JSON into a byte slice
 func (r Task) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherTask
 	}{
@@ -197,7 +197,7 @@ func (r Task) MarshalJSON() ([]byte, error) {
 // UnmarshalTask unmarshals a Task.
 func UnmarshalTask(b []byte) (Task, error) {
 	var task Task
-	if err := json.Unmarshal(b, &task); err != nil {
+	if err := jsonUnmarshal(b, &task); err != nil {
 		return task, err
 	}
 	return task, nil

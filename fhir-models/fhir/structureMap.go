@@ -187,7 +187,7 @@ type OtherStructureMap StructureMap
 
 // MarshalJSON marshals the given StructureMap as JSON into a byte slice
 func (r StructureMap) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherStructureMap
 	}{
@@ -199,7 +199,7 @@ func (r StructureMap) MarshalJSON() ([]byte, error) {
 // UnmarshalStructureMap unmarshals a StructureMap.
 func UnmarshalStructureMap(b []byte) (StructureMap, error) {
 	var structureMap StructureMap
-	if err := json.Unmarshal(b, &structureMap); err != nil {
+	if err := jsonUnmarshal(b, &structureMap); err != nil {
 		return structureMap, err
 	}
 	return structureMap, nil

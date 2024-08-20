@@ -81,7 +81,7 @@ type OtherChargeItemDefinition ChargeItemDefinition
 
 // MarshalJSON marshals the given ChargeItemDefinition as JSON into a byte slice
 func (r ChargeItemDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherChargeItemDefinition
 	}{
@@ -93,7 +93,7 @@ func (r ChargeItemDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalChargeItemDefinition unmarshals a ChargeItemDefinition.
 func UnmarshalChargeItemDefinition(b []byte) (ChargeItemDefinition, error) {
 	var chargeItemDefinition ChargeItemDefinition
-	if err := json.Unmarshal(b, &chargeItemDefinition); err != nil {
+	if err := jsonUnmarshal(b, &chargeItemDefinition); err != nil {
 		return chargeItemDefinition, err
 	}
 	return chargeItemDefinition, nil

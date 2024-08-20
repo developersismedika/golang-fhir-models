@@ -195,7 +195,7 @@ type OtherClaimResponse ClaimResponse
 
 // MarshalJSON marshals the given ClaimResponse as JSON into a byte slice
 func (r ClaimResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherClaimResponse
 	}{
@@ -207,7 +207,7 @@ func (r ClaimResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalClaimResponse unmarshals a ClaimResponse.
 func UnmarshalClaimResponse(b []byte) (ClaimResponse, error) {
 	var claimResponse ClaimResponse
-	if err := json.Unmarshal(b, &claimResponse); err != nil {
+	if err := jsonUnmarshal(b, &claimResponse); err != nil {
 		return claimResponse, err
 	}
 	return claimResponse, nil

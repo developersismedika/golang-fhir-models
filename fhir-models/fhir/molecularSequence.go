@@ -142,7 +142,7 @@ type OtherMolecularSequence MolecularSequence
 
 // MarshalJSON marshals the given MolecularSequence as JSON into a byte slice
 func (r MolecularSequence) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherMolecularSequence
 	}{
@@ -154,7 +154,7 @@ func (r MolecularSequence) MarshalJSON() ([]byte, error) {
 // UnmarshalMolecularSequence unmarshals a MolecularSequence.
 func UnmarshalMolecularSequence(b []byte) (MolecularSequence, error) {
 	var molecularSequence MolecularSequence
-	if err := json.Unmarshal(b, &molecularSequence); err != nil {
+	if err := jsonUnmarshal(b, &molecularSequence); err != nil {
 		return molecularSequence, err
 	}
 	return molecularSequence, nil

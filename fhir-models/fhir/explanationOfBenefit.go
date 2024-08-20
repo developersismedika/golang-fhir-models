@@ -338,7 +338,7 @@ type OtherExplanationOfBenefit ExplanationOfBenefit
 
 // MarshalJSON marshals the given ExplanationOfBenefit as JSON into a byte slice
 func (r ExplanationOfBenefit) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherExplanationOfBenefit
 	}{
@@ -350,7 +350,7 @@ func (r ExplanationOfBenefit) MarshalJSON() ([]byte, error) {
 // UnmarshalExplanationOfBenefit unmarshals a ExplanationOfBenefit.
 func UnmarshalExplanationOfBenefit(b []byte) (ExplanationOfBenefit, error) {
 	var explanationOfBenefit ExplanationOfBenefit
-	if err := json.Unmarshal(b, &explanationOfBenefit); err != nil {
+	if err := jsonUnmarshal(b, &explanationOfBenefit); err != nil {
 		return explanationOfBenefit, err
 	}
 	return explanationOfBenefit, nil

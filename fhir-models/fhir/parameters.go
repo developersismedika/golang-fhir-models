@@ -89,7 +89,7 @@ type OtherParameters Parameters
 
 // MarshalJSON marshals the given Parameters as JSON into a byte slice
 func (r Parameters) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
+	return jsonMarshal(struct {
 		ResourceType string `json:"resourceType"`
 		OtherParameters
 	}{
@@ -101,7 +101,7 @@ func (r Parameters) MarshalJSON() ([]byte, error) {
 // UnmarshalParameters unmarshals a Parameters.
 func UnmarshalParameters(b []byte) (Parameters, error) {
 	var parameters Parameters
-	if err := json.Unmarshal(b, &parameters); err != nil {
+	if err := jsonUnmarshal(b, &parameters); err != nil {
 		return parameters, err
 	}
 	return parameters, nil
